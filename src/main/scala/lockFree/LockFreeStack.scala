@@ -31,7 +31,19 @@ class LockFreeStack[E](capacity: Int) extends LockFreeMonitor {
   val top = new SimpleAtomicReference[Node[E]](null)
   // Do not add other variables
 
-  def push(e: E): Unit = ??? 
+  def push(e: E): Unit = {
+    var node = new Node(e)
+    if (top.get != null) {
+      node.next = top.get
+    }
+    else
+      top.set(node)
+    while (!top.compareAndSet(top.get, node)){}
+  }
 
-  def pop(): E = ???
+  def pop(): E = {
+    var node = top.get
+    while (!top.compareAndSet(node, node.next)){}
+    node.value
+  }
 }
