@@ -158,3 +158,8 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/sbt,java,scala,windows,intellij
+
+.bloop
+.metals
+null
+target
