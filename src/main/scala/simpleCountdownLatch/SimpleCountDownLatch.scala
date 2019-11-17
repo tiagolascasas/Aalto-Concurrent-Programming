@@ -19,14 +19,21 @@ package simpleCountdownLatch
 
 class SimpleCountDownLatch(initCount: Int) extends AbstractCountDownLatch {
   
-  if(initCount < 0){
-    throw new IllegalArgumentException("initCount must be non-negative")
-  }
+    if(initCount < 0){
+      throw new IllegalArgumentException("initCount must be non-negative")
+    }
 
-  count = initCount
-  
-  def await(): Unit = ???
+    count = initCount
 
-  def countDown(): Unit = ???
+    def await(): Unit = synchronized {
+      if (count > 0)
+        wait()
+    }
 
+    def countDown(): Unit = synchronized {
+        count -= 1
+        if (count == 0) {
+          notifyAll()
+      }
+    }
 }
