@@ -23,7 +23,11 @@ class Spinlock extends Monitor{
     val flag = new SimpleAtomicInteger(0)
     // Do not add other variables
 
-    def lock(): Unit =  ???
+    def lock(): Unit =  {
+        while(!flag.compareAndSet(0, 1)){}
+    }
 
-    def unlock(): Unit = ???
+    def unlock(): Unit = {
+        while(!flag.compareAndSet(1, 0)){}
+    }
 }
