@@ -12,7 +12,7 @@ class ThreadsTest extends FlatSpec with BeforeAndAfterAll {
 
   override def afterAll() {
   }
-  
+  /*
   println(s"arr: ${arr.mkString(",")}")
   println(s"bs: ${bs.mkString(",")}")
   
@@ -22,5 +22,5 @@ class ThreadsTest extends FlatSpec with BeforeAndAfterAll {
   }
   it should "be the square of the old array" in{
     assert((bs.toSeq).equals(arr.map(x =>x*x).toSeq))
-  }
+  }*/
 }

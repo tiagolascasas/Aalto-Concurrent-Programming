@@ -18,10 +18,10 @@ class SpinlockMain extends Runnable {
   override def run(){
     get()
   }
-}
+}/*
 object SpinlockMain extends App{
   val test = new SpinlockMain
   new Thread(test).start()
   new Thread(test).start()
   
-}
+}*/
